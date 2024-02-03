@@ -10,12 +10,12 @@ import (
 	"golang.org/x/tools/cover"
 )
 
-func ExtendCoverage(m *testing.M) int {
+func ExtendCoverage(m *testing.M, name string) int {
 	lastArg := os.Args[len(os.Args)-1]
 	if lastArg == "ALL" {
 		return m.Run()
 	}
-	path := "/tmp/goracle_coverage.out"
+	path := "/tmp/" + name + ".cover"
 	f, err := os.Create(path)
 	if err != nil {
 		fmt.Println(err)
